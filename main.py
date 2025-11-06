@@ -17,18 +17,16 @@ def print_char_dict(path, word_count, sorted_char_dict):
             print(f"{item['char']}: {item['num']}")
     print("============= END ===============")
 
-
 if __name__ == "__main__":
-    cwd = os.getcwd()
     if len(sys.argv) > 1:
+        cwd = os.getcwd()
         filepath = str(sys.argv[1])
         if filepath[0] != "/":
             filepath = os.path.join(cwd, filepath)
-        get_book_text(filepath)
-    else:
-        filepath = os.path.join(cwd, "books/frankenstein.txt")
         book = get_book_text(filepath)
         wc = count_words(book)
         scd = sort_char_dict(count_chars(book))
         print_char_dict(filepath, wc, scd)
-
+    else:
+        print("Usage: python3 main.py <path_to_book>")
+        sys.exit(1)
